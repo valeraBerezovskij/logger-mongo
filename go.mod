@@ -1,4 +1,4 @@
-module github.com/valeraBerezovskij/logger-mongo
+module github.com/valeraBerezovskij/logger-mongo2
 
 go 1.23
 
