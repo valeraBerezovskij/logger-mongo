@@ -13,7 +13,7 @@ import (
 	"time"
 )
 
-func main() {
+func main() { 
 	//Config init
 	cfg, err := config.New()
 	if err != nil {
