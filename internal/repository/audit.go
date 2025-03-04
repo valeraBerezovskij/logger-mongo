@@ -2,7 +2,7 @@ package repository
 
 import (
 	"context"
-	audit "github.com/valeraBerezovskij/logger/pkg/domain"
+	audit "github.com/valeraBerezovskij/logger-mongo/pkg/domain"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 

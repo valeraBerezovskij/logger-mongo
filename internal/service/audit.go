@@ -2,7 +2,7 @@ package service
 
 import (
 	"context"
-	audit "github.com/valeraBerezovskij/logger/pkg/domain"
+	audit "github.com/valeraBerezovskij/logger-mongo/pkg/domain"
 )
 
 type Repository interface {

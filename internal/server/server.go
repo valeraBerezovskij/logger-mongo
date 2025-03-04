@@ -2,7 +2,7 @@ package server
 
 import (
 	"fmt"
-	audit "github.com/valeraBerezovskij/logger/pkg/domain"
+	audit "github.com/valeraBerezovskij/logger-mongo/pkg/domain"
 	"google.golang.org/grpc"
 	"net"
 )

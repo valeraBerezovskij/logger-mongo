@@ -7,7 +7,7 @@ import (
 
 const (
 	ENTITY_USER     = "USER"
-	ENTITY_EXERICSE = "EXERCISE"
+	ENTITY_BANANA = "BANANA"
 
 	ACTION_CREATE   = "CREATE"
 	ACTION_UPDATE   = "UPDATE"
@@ -21,7 +21,7 @@ const (
 var (
 	entities = map[string]LogRequest_Entities{
 		ENTITY_USER:     LogRequest_USER,
-		ENTITY_EXERICSE: LogRequest_EXERCISE,
+		ENTITY_BANANA:   LogRequest_BANANA,
 	}
 
 	actions = map[string]LogRequest_Actions{

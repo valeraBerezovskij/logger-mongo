@@ -18,7 +18,7 @@ message LogRequest{
 
   enum Entities {
     USER = 0;
-    EXERCISE = 1;
+    BANANA = 1;
   }
 
   Actions action = 1;

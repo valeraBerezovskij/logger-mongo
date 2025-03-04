@@ -3,18 +3,26 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/valeraBerezovskij/logger/internal/config"
-	"github.com/valeraBerezovskij/logger/internal/repository"
-	"github.com/valeraBerezovskij/logger/internal/server"
-	"github.com/valeraBerezovskij/logger/internal/service"
+	"github.com/valeraBerezovskij/logger-mongo/internal/config"
+	"github.com/valeraBerezovskij/logger-mongo/internal/repository"
+	"github.com/valeraBerezovskij/logger-mongo/internal/server"
+	"github.com/valeraBerezovskij/logger-mongo/internal/service"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"log"
 	"time"
+	"github.com/joho/godotenv"
 )
 
-func main() { 
+func main() {
+	fmt.Println("Programm started", time.Now())
+
 	//Config init
+	err := godotenv.Load()
+	if err != nil {
+		log.Println("Warning: No .env file found")
+	}
+
 	cfg, err := config.New()
 	if err != nil {
 		log.Fatal(err)
@@ -40,6 +48,7 @@ func main() {
 	if err := dbClient.Ping(context.Background(), nil); err != nil {
 		log.Fatal(err)
 	}
+	fmt.Println("Mongo started", time.Now())
 
 	//Database init
 	db := dbClient.Database(cfg.DB.Database)
