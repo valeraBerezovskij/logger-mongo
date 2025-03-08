@@ -68,13 +68,15 @@ func (s *Server) ConsumeMessages(ctx context.Context) {
 
 	go func() {
 		for d := range msgs {
-			var req audit.LogItem
-			if err := json.Unmarshal(d.Body, &req); err != nil {
+			var logMessage audit.LogMessage
+			if err := json.Unmarshal(d.Body, &logMessage); err != nil {
 				log.Printf("failed to unmarshal message: %v", err)
 				continue
 			}
-			log.Printf("Received a message: %+v", req)
-			err := s.audit.Insert(ctx, &req)
+			
+			ctx := context.WithValue(context.Background(), "metadata", logMessage.Context)
+			log.Printf("Received a message: %+v", logMessage.LogItem)
+			err := s.audit.Insert(ctx, &logMessage.LogItem)
 			if err != nil {
 				log.Printf("failed to log message: %v", err)
 			}
