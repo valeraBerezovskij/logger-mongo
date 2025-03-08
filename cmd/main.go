@@ -57,11 +57,13 @@ func main() {
 	auditRepo := repository.NewAudit(db)
 	auditService := service.NewAudit(auditRepo)
 	auditSrv := server.NewAuditServer(auditService)
-	srv := server.New(auditSrv)
+	srv, err := server.NewServer("amqp://guest:guest@localhost:5672/", "logs", auditSrv)
+	if err != nil {
+		log.Fatal("failed to initialize server: ", err)
+	}
+	defer srv.Close()
 
 	fmt.Println("Server started", time.Now())
 
-	if err := srv.ListenAndServe(cfg.Server.Port); err != nil {
-		log.Fatal(err)
-	}
+	srv.ConsumeMessages(ctx)
 }

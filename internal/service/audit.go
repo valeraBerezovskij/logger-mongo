@@ -17,12 +17,13 @@ func NewAudit(repo Repository) *Audit {
 		repo: repo,
 	}
 }
-func (a *Audit) Insert(ctx context.Context, req *audit.LogRequest) error {
+
+func (a *Audit) Insert(ctx context.Context, req *audit.LogItem) error {
 	item := audit.LogItem{
-		Action:    req.GetAction().String(),
-		Entity:    req.GetEntity().String(),
-		EntityID:  req.GetEntityId(),
-		Timestamp: req.GetTimestamp().AsTime(),
+		Action:    req.Action,
+		Entity:    req.Entity,
+		EntityID:  req.EntityID,
+		Timestamp: req.Timestamp,
 	}
 	return a.repo.Insert(ctx, item)
 }
